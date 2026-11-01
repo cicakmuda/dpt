@@ -1,7 +1,7 @@
 /* Dompetku — Service Worker (sw.js)
    Membuat aplikasi bisa dibuka offline & terasa seperti aplikasi asli.
    Naikkan VERSION setiap kali kamu mengunggah perubahan file. */
-const VERSION = 'dompetku-v1.0.0';
+const VERSION = 'dompetku-v1.1.0';
 const SHELL = ['./', './index.html', './style.css', './app.js', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './icons/favicon.svg'];
 const CDN = ['https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js'];

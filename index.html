@@ -26,6 +26,9 @@
         var t = p.theme || 'auto';
         if (t === 'auto') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = t;
+        // Sembunyikan isi sampai PIN dimasukkan
+        var pin = JSON.parse(localStorage.getItem('dk.pin') || 'null');
+        if (pin && pin.hash) document.documentElement.classList.add('locked');
       } catch (e) { document.documentElement.dataset.theme = 'light'; }
     })();
   </script>
