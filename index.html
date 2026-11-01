@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dompetku</title>
+  <meta name="description" content="Catat pemasukan & pengeluaran dalam hitungan detik, langsung ke Google Sheets.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Dompetku">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Terapkan tema sebelum halaman tampil (mencegah kedip putih/hitam)
+    (function () {
+      try {
+        var p = JSON.parse(localStorage.getItem('dk.prefs') || '{}');
+        var t = p.theme || 'auto';
+        if (t === 'auto') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      } catch (e) { document.documentElement.dataset.theme = 'light'; }
+    })();
+  </script>
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar" id="topbar"></header>
+
+    <main class="views" id="views">
+      <section class="view" data-view="home" aria-label="Beranda"></section>
+      <section class="view" data-view="stats" aria-label="Statistik"></section>
+      <section class="view" data-view="history" aria-label="Riwayat"></section>
+      <section class="view" data-view="settings" aria-label="Pengaturan"></section>
+    </main>
+
+    <nav class="bottom-nav" id="bottom-nav" aria-label="Navigasi utama">
+      <button class="nav-btn" data-nav="home"><span data-icon="home"></span><span>Beranda</span></button>
+      <button class="nav-btn" data-nav="stats"><span data-icon="chart"></span><span>Statistik</span></button>
+      <button class="fab" data-action="add" aria-label="Tambah transaksi"><span data-icon="plus"></span></button>
+      <button class="nav-btn" data-nav="history"><span data-icon="list"></span><span>Riwayat</span></button>
+      <button class="nav-btn" data-nav="settings"><span data-icon="settings"></span><span>Pengaturan</span></button>
+    </nav>
+  </div>
+
+  <div id="setup-root"></div>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <noscript>Aplikasi ini membutuhkan JavaScript.</noscript>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" async onload="window.onChartReady && window.onChartReady()"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
